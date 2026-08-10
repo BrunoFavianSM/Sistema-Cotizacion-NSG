@@ -1,0 +1,170 @@
+/**
+ * Tema de los tours (driver.js) alineado con los tokens Apple HIG del proyecto.
+ * Soporta modo claro y oscuro (clase .dark en <html>) y respeta prefers-reduced-motion.
+ * La clase .tour-nsg se aplica a cada popover desde driver.config.js (popoverClass).
+ */
+
+/* Capa de oscurecimiento del fondo */
+.driver-overlay,
+.driver-overlay-animated {
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+.dark .driver-overlay,
+.dark .driver-overlay-animated {
+  fill: rgba(0, 0, 0, 0.7);
+}
+
+/* Popover */
+.driver-popover.tour-nsg {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  font-family: var(--font-sans);
+  padding: var(--space-5);
+  max-width: 22rem;
+}
+
+.driver-popover.tour-nsg .driver-popover-title {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  letter-spacing: -0.008em;
+  margin-bottom: var(--space-2);
+}
+
+.driver-popover.tour-nsg .driver-popover-description {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+/* Flecha del popover */
+.driver-popover.tour-nsg .driver-popover-arrow {
+  border-color: var(--color-surface);
+}
+
+/* Pie del popover: primero (arriba) la fila de botones, debajo el "1 de 5".
+   column-reverse coloca el grupo de navegación (último hijo en el DOM) arriba
+   y el texto de progreso (primer hijo) abajo. */
+.driver-popover.tour-nsg .driver-popover-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+}
+
+/* Texto de progreso "1 de 8" — debajo de los botones, sin partirse en líneas */
+.driver-popover.tour-nsg .driver-popover-progress-text {
+  font-size: var(--font-size-footnote);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Botón de cerrar (X) */
+.driver-popover.tour-nsg .driver-popover-close-btn {
+  color: var(--color-text-muted);
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.driver-popover.tour-nsg .driver-popover-close-btn:hover,
+.driver-popover.tour-nsg .driver-popover-close-btn:focus-visible {
+  color: var(--color-text);
+}
+
+/* Grupo de navegación: fila con los tres botones. "Saltar tour" queda a la
+   izquierda (margin-right:auto) y Anterior/Siguiente agrupados a la derecha. */
+.driver-popover.tour-nsg .driver-popover-navigation-btns {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.driver-popover.tour-nsg .driver-popover-navigation-btns button {
+  min-height: 2.75rem; /* 44px touch target */
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-soft);
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  text-shadow: none;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.driver-popover.tour-nsg .driver-popover-navigation-btns button:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-text-muted);
+}
+
+/* Botón "Siguiente"/"Listo" — acento */
+.driver-popover.tour-nsg .driver-popover-next-btn {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.driver-popover.tour-nsg .driver-popover-next-btn:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  opacity: 0.9;
+}
+
+/* Botón "Saltar tour": primer hijo del grupo de navegación, empujado a la
+   izquierda para separarlo de Anterior/Siguiente. Estilizado como botón
+   visible (borde + fondo), con acento de peligro al pasar el cursor. */
+.driver-popover.tour-nsg .tour-nsg-skip-btn {
+  margin-right: auto;
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.driver-popover.tour-nsg .tour-nsg-skip-btn:hover,
+.driver-popover.tour-nsg .tour-nsg-skip-btn:focus-visible {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  background-color: var(--color-surface);
+}
+
+.driver-popover.tour-nsg .tour-nsg-skip-btn:hover,
+.driver-popover.tour-nsg .tour-nsg-skip-btn:focus-visible {
+  color: var(--color-danger);
+}
+
+/* Foco visible coherente con el resto de la app */
+.driver-popover.tour-nsg button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driver-popover.tour-nsg,
+  .driver-overlay,
+  .driver-overlay-animated {
+    transition: none !important;
+  }
+}

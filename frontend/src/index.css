@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Typography */
+  --font-sans: "SF Pro Text", "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-display: 2.5rem; /* 40px */
+  --font-size-h1: 2rem; /* 32px */
+  --font-size-h2: 1.5rem; /* 24px */
+  --font-size-h3: 1.25rem; /* 20px */
+  --font-size-body: 1rem; /* 16px */
+  --font-size-footnote: 0.8125rem; /* 13px */
+
+  --line-height-display: 3rem; /* 48px */
+  --line-height-h1: 2.5rem; /* 40px */
+  --line-height-h2: 2rem; /* 32px */
+  --line-height-h3: 1.75rem; /* 28px */
+  --line-height-body: 1.5rem; /* 24px */
+  --line-height-footnote: 1.125rem; /* 18px */
+
+  /* 4px Grid — en rem para escalar con font-size base */
+  --space-1: 0.25rem;   /* 4px @ 16px base */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* Radius — en rem para escalar con font-size base */
+  --radius-sm: 0.625rem;  /* 10px */
+  --radius-md: 0.875rem;  /* 14px */
+  --radius-lg: 1.125rem;  /* 18px */
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-normal: 200ms;
+  --motion-slow: 250ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Light Colors */
+  --color-bg: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f2f2f7;
+  --color-border: #d2d2d7;
+  --color-text: #1d1d1f;
+  --color-text-muted: #6e6e73;
+
+  --color-accent: #005ecb;
+  --color-accent-text: #005bb8;
+  --color-accent-soft: rgba(0, 94, 203, 0.12);
+  --color-accent-solid: #005ecb;
+  --color-on-accent: #ffffff;
+
+  --color-success: #1f7f3b;
+  --color-success-solid: #1f7f3b;
+  --color-on-success: #ffffff;
+
+  --color-warning: #8c5200;
+  --color-warning-solid: #8c5200;
+  --color-on-warning: #ffffff;
+
+  --color-danger: #c6281f;
+  --color-danger-solid: #c6281f;
+  --color-on-danger: #ffffff;
+
+  --color-focus: #007aff;
+  --color-focus-ring: rgba(0, 122, 255, 0.35);
+
+  --color-glass-bg: rgba(255, 255, 255, 0.72);
+  --color-glass-border: rgba(255, 255, 255, 0.42);
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 6px 24px rgba(0, 0, 0, 0.1);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  color-scheme: light;
+}
+
+.dark {
+  --color-bg: #000000;
+  --color-surface: #1c1c1e;
+  --color-surface-soft: #2c2c2e;
+  --color-border: #3a3a3c;
+  --color-text: #f5f5f7;
+  --color-text-muted: #aeaeb2;
+
+  --color-accent: #0b63ce;
+  --color-accent-text: #9fd0ff;
+  --color-accent-soft: rgba(11, 99, 206, 0.26);
+  --color-accent-solid: #0b63ce;
+  --color-on-accent: #ffffff;
+
+  --color-success: #72e2a0;
+  --color-success-solid: #237a3f;
+  --color-on-success: #ffffff;
+
+  --color-warning: #ffd782;
+  --color-warning-solid: #8b5300;
+  --color-on-warning: #ffffff;
+
+  --color-danger: #ff9a93;
+  --color-danger-solid: #a5271f;
+  --color-on-danger: #ffffff;
+
+  --color-focus: #0a84ff;
+  --color-focus-ring: rgba(10, 132, 255, 0.4);
+
+  --color-glass-bg: rgba(28, 28, 30, 0.72);
+  --color-glass-border: rgba(84, 84, 88, 0.34);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 13px; /* ~80% de 16px — escala toda la UI via rem */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition:
+      background-color var(--motion-normal) var(--ease-standard),
+      color var(--motion-normal) var(--ease-standard);
+  }
+
+  h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h2);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.008em;
+  }
+
+  h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+    font-weight: var(--font-weight-medium);
+  }
+
+  p,
+  li,
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-text);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--color-focus-ring);
+  }
+
+  button,
+  [role='button'],
+  [role='switch'],
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+
+  button:disabled,
+  [role='button'][aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}
+
+@layer components {
+  .surface-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-1);
+  }
+
+  .surface-elevated {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-2);
+  }
+
+  .surface-glass {
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-glass);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: #8a8a8f;
+    --color-text-muted: #4f4f55;
+    --color-focus: #0045b5;
+    --color-focus-ring: rgba(0, 69, 181, 0.34);
+    --color-glass-bg: rgba(255, 255, 255, 0.95);
+    --color-glass-border: rgba(0, 0, 0, 0.22);
+  }
+
+  .dark {
+    --color-border: #8e8e93;
+    --color-text-muted: #d0d0d4;
+    --color-focus: #7fc2ff;
+    --color-focus-ring: rgba(127, 194, 255, 0.38);
+    --color-glass-bg: rgba(28, 28, 30, 0.94);
+    --color-glass-border: rgba(255, 255, 255, 0.25);
+  }
+}
+
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid Highlight;
+    box-shadow: none;
+  }
+}
