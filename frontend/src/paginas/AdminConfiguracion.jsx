@@ -143,7 +143,6 @@ export default function AdminConfiguracion() {
   const [modoTipoCambio, setModoTipoCambio] = useState(modoTipoCambioContexto);
   const [guardandoModo, setGuardandoModo] = useState(false);
 
-  const [limpiando, setLimpiando] = useState(false);
 
   // ── Estado sección Asistente de IA (Requisitos 2.10–2.17) ──────────────────
   const [modoIA, setModoIA] = useState('nvidia');
@@ -386,23 +385,6 @@ export default function AdminConfiguracion() {
       setGuardandoModo(false);
     }
   };
-
-  const handleLimpiarCatalogo = async () => {
-    if (!window.confirm('¿Estás seguro de que deseas limpiar todo el catálogo? Esta acción eliminará todos los productos de las 23 tablas y no se puede deshacer.')) {
-      return;
-    }
-
-    setLimpiando(true);
-    try {
-      const respuesta = await api.limpiarCatalogo();
-      toast.success('Éxito', respuesta.mensaje);
-    } catch (error) {
-      toast.error('Error', error?.mensaje || 'No se pudo limpiar el catálogo.');
-    } finally {
-      setLimpiando(false);
-    }
-  };
-
 
   // Defensa en profundidad: la ruta ya exige admin, pero el componente
   // vuelve a verificar el rol antes de renderizar contenido administrativo.
@@ -936,28 +918,6 @@ export default function AdminConfiguracion() {
       </section>
 
       <section className="surface-elevated p-6 border-l-4 border-[var(--color-danger)]">
-        <header className="mb-4">
-          <h2 className="text-lg font-semibold text-[var(--color-text)]">Mantenimiento (Testeo)</h2>
-          <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-            Acciones destructivas para facilitar pruebas de desarrollo.
-          </p>
-        </header>
-
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center justify-between p-4 rounded-[var(--radius-md)] bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/20">
-          <div>
-            <p className="text-sm font-semibold text-red-800 dark:text-red-400">Limpiar Catálogo de Productos</p>
-            <p className="text-xs text-red-700 dark:text-red-500/80">Vacía las 23 tablas de productos inmediatamente. Útil antes de una nueva importación CSV.</p>
-          </div>
-          <Button 
-            variant="danger" 
-            onClick={handleLimpiarCatalogo} 
-            loading={limpiando}
-            className="shrink-0"
-          >
-            Limpiar todo el catálogo
-          </Button>
-        </div>
-      </section>
     </div>
   );
 }

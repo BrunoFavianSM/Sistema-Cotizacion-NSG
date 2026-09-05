@@ -304,21 +304,6 @@ export const construirUrlDeltron = (codigoProveedor) => {
 };
 
 /**
- * Limpia todo el catálogo de productos (requiere autenticación)
- * Elimina todos los registros de las 23 tablas de productos.
- * @returns {Promise<Object>}
- */
-export const limpiarCatalogo = async () => {
-  try {
-    const response = await api.delete('/productos/limpiar');
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-
-/**
  * Importa catálogo de productos desde archivo CSV
  * @param {File} archivo - Archivo .csv
  * @returns {Promise<{exito:boolean, insertados:number, actualizados:number, omitidos:number, errores:number, detalle_errores:Array}>}

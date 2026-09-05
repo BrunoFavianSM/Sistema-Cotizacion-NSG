@@ -735,21 +735,6 @@ async function eliminarProducto(req, res) {
 }
 
 /**
- * DELETE /api/productos (limpiar catálogo)
- * Operación destructiva de admin: vacía productos, marcas y todas las tablas specs_*
- * con TRUNCATE ... RESTART IDENTITY CASCADE (reinicia los IDs).
- */
-async function limpiarCatalogo(req, res) {
-  try {
-    await ejecutarQuery('TRUNCATE TABLE specs_case, specs_fuente, specs_gpu, specs_almacenamiento, specs_ram, specs_placa_madre, specs_procesador, productos, marcas RESTART IDENTITY CASCADE');
-    return res.json({ exito: true, mensaje: 'Catalogo limpiado (productos + specs)' });
-  } catch (error) {
-    console.error('Error al limpiar catalogo:', error);
-    return res.status(500).json({ error: 'Error al limpiar catalogo', mensaje: 'No se pudo limpiar el catalogo' });
-  }
-}
-
-/**
  * Obtiene el historial de cambios de precio de un producto.
  * Req. 3.4, 3.5, 3.6
  */
@@ -942,7 +927,6 @@ module.exports = {
   crearProducto,
   actualizarProducto,
   eliminarProducto,
-  limpiarCatalogo,
   obtenerHistorialPrecios,
   buscarProductosCompatibles,
 };

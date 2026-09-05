@@ -16,7 +16,6 @@ const {
   crearProducto,
   actualizarProducto,
   eliminarProducto,
-  limpiarCatalogo,
   obtenerHistorialPrecios,
   buscarProductosCompatibles,
 } = require('../controladores/controladorProductos');
@@ -35,6 +34,5 @@ router.get('/:id/historial-precios', verificarTokenAdmin, obtenerHistorialPrecio
 router.post('/', verificarTokenAdmin, crearProducto);
 router.put('/:categoria/:id', verificarTokenAdmin, actualizarProducto);
 router.delete('/:categoria/:id', verificarTokenAdmin, eliminarProducto);
-router.delete('/limpiar', verificarTokenAdmin, limpiarCatalogo);
 
 module.exports = router;
