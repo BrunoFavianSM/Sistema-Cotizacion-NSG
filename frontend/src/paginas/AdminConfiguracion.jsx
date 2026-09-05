@@ -917,7 +917,6 @@ export default function AdminConfiguracion() {
         </div>
       </section>
 
-      <section className="surface-elevated p-6 border-l-4 border-[var(--color-danger)]">
     </div>
   );
 }
